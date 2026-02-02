@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Onyx A. Masa - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Matrix Rain Background -->
+    <canvas id="matrix-rain"></canvas>
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="terminal-loader">
+            <div class="loader-text">
+                <span class="typing-text">INITIALIZING SYSTEM...</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="system-info">
+                    <p>Loading user profile: JOHN_ONYX_MASA</p>
+                    <p>Establishing secure connection...</p>
+                    <p>Access granted. Welcome, Agent.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game HUD -->
+    <div class="game-hud">
+        <div class="hud-main">
+            <div class="player-info">
+                <span class="player-name">AGENT: ONYX</span>
+                <div class="level-indicator">LVL 3 BSIT</div>
+            </div>
+            
+            <div class="checkpoint-nav">
+                <div class="checkpoint" data-target="home" data-unlocked="true">
+                    <i class="fas fa-home"></i>
+                    <span>BASE</span>
+                </div>
+                <div class="checkpoint" data-target="about" data-unlocked="false">
+                    <i class="fas fa-user-secret"></i>
+                    <span>PROFILE</span>
+                </div>
+                <div class="checkpoint" data-target="skills" data-unlocked="false">
+                    <i class="fas fa-code"></i>
+                    <span>ARSENAL</span>
+                </div>
+                <div class="checkpoint" data-target="projects" data-unlocked="false">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>MISSIONS</span>
+                </div>
+                <div class="checkpoint" data-target="contact" data-unlocked="false">
+                    <i class="fas fa-satellite-dish"></i>
+                    <span>COMMS</span>
+                </div>
+            </div>
+            
+            <div class="mission-progress">
+                <span>PORTFOLIO EXPLORATION: <span id="progress-percent">0%</span></span>
+                <div class="progress-bar-hud">
+                    <div class="progress-fill-hud"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="glitch-text" data-text="ONYX.MASA">ONYX.MASA</span>
+            </div>
+            <div class="nav-status">
+                <span class="status-indicator"></span>
+                <span>ONLINE</span>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="btn-close"></span>
+                            <span class="btn-minimize"></span>
+                            <span class="btn-maximize"></span>
+                        </div>
+                        <span class="terminal-title">root@onyx-system:~$</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">onyx@system:~$</span>
+                            <span class="command typing-effect">whoami</span>
+                        </div>
+                        <div class="terminal-output">
+                            <h1 class="hero-title">
+                                <span class="glitch-text" data-text="JOHN ONYX A. MASA">JOHN ONYX A. MASA</span>
+                            </h1>
+                            <p class="hero-subtitle">3rd Year BSIT Student | Full Stack Web & Mobile Developer</p>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="prompt">onyx@system:~$</span>
+                            <span class="command typing-effect-2">cat mission.txt</span>
+                        </div>
+                        <div class="terminal-output">
+                            <p class="hero-description">
+                                Specializing in logical thinking and problem-solving through code.
+                                Building web applications, mobile systems, and exploring the depths of cybersecurity.
+                                Inspired by family legacy in IT to create innovative digital solutions.
+                            </p>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="prompt">onyx@system:~$</span>
+                            <span class="command typing-effect-3">./start_mission.sh</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="startMission()">
+                        <i class="fas fa-play"></i> START MISSION
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('contact')">
+                        <i class="fas fa-satellite-dish"></i> ESTABLISH CONTACT
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hologram-container">
+                    <div class="hologram-avatar">
+                        <div class="avatar-frame">
+                            <img src="static/uploads/a196f554-0403-4c22-997a-ed3e8edeaf01.jpg" 
+                                 alt="John Onyx A. Masa" 
+                                 class="profile-image" 
+                                 style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; display: block; border: 3px solid #00ff41;"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="profile-fallback" style="display: none; width: 280px; height: 280px; border-radius: 50%; border: 3px solid #00ff41; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; font-size: 4rem; color: #00ff41;">
+                                <i class="fas fa-user-secret"></i>
+                            </div>
+                        </div>
+                        <div class="scan-lines"></div>
+                        <div class="hologram-text">AGENT ONYX</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section-locked">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="glitch-text" data-text="AGENT PROFILE">AGENT PROFILE</span>
+                </h2>
+                <div class="unlock-animation">
+                    <i class="fas fa-lock"></i>
+                    <span>CHECKPOINT UNLOCKED</span>
+                </div>
+            </div>
+            <div class="about-content">
+                <div class="profile-terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-title">profile.exe --display-info</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="profile-data">
+                            <div class="data-line">
+                                <span class="data-label">NAME:</span>
+                                <span class="data-value">John Onyx A. Masa</span>
+                            </div>
+                            <div class="data-line">
+                                <span class="data-label">STATUS:</span>
+                                <span class="data-value">3rd Year BSIT Student | Full Stack Web & Mobile Developer</span>
+                            </div>
+                            <div class="data-line">
+                                <span class="data-label">SPECIALIZATION:</span>
+                                <span class="data-value">Web Development | Mobile Systems | Database Management</span>
+                            </div>
+                            <div class="data-line">
+                                <span class="data-label">INTERESTS:</span>
+                                <span class="data-value">Cybersecurity | Logical Problem Solving</span>
+                            </div>
+                            <div class="data-line">
+                                <span class="data-label">ORIGIN_STORY:</span>
+                                <span class="data-value">Influenced by family legacy in IT, driven by passion for digital innovation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-code"></i></div>
+                        <div class="stat-number" data-target="15">0</div>
+                        <div class="stat-label">Projects Coded</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="stat-number" data-target="3">0</div>
+                        <div class="stat-label">Years Learning</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-database"></i></div>
+                        <div class="stat-number" data-target="8">0</div>
+                        <div class="stat-label">Technologies</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Skills Section -->
+    <section id="skills" class="skills section-locked">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="glitch-text" data-text="DIGITAL ARSENAL">DIGITAL ARSENAL</span>
+                </h2>
+                <div class="unlock-animation">
+                    <i class="fas fa-lock"></i>
+                    <span>CHECKPOINT UNLOCKED</span>
+                </div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>PROGRAMMING LANGUAGES</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Java</span>
+                            <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">C#</span>
+                            <div class="skill-bar"><div class="skill-progress" data-width="65"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">PHP</span>
+                            <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-globe"></i>
+                        <h3>WEB TECHNOLOGIES</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">HTML5</span>
+                            <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">CSS3</span>
+                            <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-database"></i>
+                        <h3>DATABASE SYSTEMS</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">MySQL</span>
+                            <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>MOBILE DEVELOPMENT</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Android Studio</span>
+                            <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-tools"></i>
+                        <h3>DEVELOPMENT TOOLS</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Visual Studio</span>
+                            <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">GitHub</span>
+                            <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>CYBERSECURITY [LEARNING]</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item learning">
+                            <span class="skill-name">Ethical Hacking</span>
+                            <div class="skill-bar"><div class="skill-progress learning-progress" data-width="25"></div></div>
+                        </div>
+                        <div class="skill-item learning">
+                            <span class="skill-name">Network Security</span>
+                            <div class="skill-bar"><div class="skill-progress learning-progress" data-width="20"></div></div>
+                        </div>
+                        <div class="skill-item learning">
+                            <span class="skill-name">Penetration Testing</span>
+                            <div class="skill-bar"><div class="skill-progress learning-progress" data-width="15"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Projects Section -->
+    <section id="projects" class="projects section-locked">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="glitch-text" data-text="MISSION ARCHIVES">MISSION ARCHIVES</span>
+                </h2>
+                <div class="unlock-animation">
+                    <i class="fas fa-lock"></i>
+                    <span>CHECKPOINT UNLOCKED</span>
+                </div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-status">
+                            <span class="status-badge completed">COMPLETED</span>
+                        </div>
+                        <div class="project-id">MISSION_001</div>
+                    </div>
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="scan-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Barangay San Isidro Health Monitoring</h3>
+                        <p class="project-description">
+                            A digital tool designed to organize resident's health records, track medical updates, 
+                            and assist local health workers in providing faster and more efficient healthcare services.
+                        </p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>PHP</span>
+                            <span>MySQL</span>
+                            <span>APIs</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link disabled">
+                                <i class="fab fa-github"></i> SOURCE CODE
+                            </a>
+                            <a href="#" class="project-link disabled">
+                                <i class="fas fa-external-link-alt"></i> CLASSIFIED
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-status">
+                            <span class="status-badge completed">COMPLETED</span>
+                        </div>
+                        <div class="project-id">MISSION_002</div>
+                    </div>
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="scan-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Electronics & Gadgets E-Commerce</h3>
+                        <p class="project-description">
+                            A comprehensive e-commerce platform similar to Shopee, Lazada, and Amazon. 
+                            Features product catalog, shopping cart, user authentication, and payment integration.
+                        </p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>Python</span>
+                            <span>MySQL</span>
+                            <span>APIs</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link disabled">
+                                <i class="fab fa-github"></i> SOURCE CODE
+                            </a>
+                            <a href="#" class="project-link disabled">
+                                <i class="fas fa-external-link-alt"></i> CLASSIFIED
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-status">
+                            <span class="status-badge completed">COMPLETED</span>
+                        </div>
+                        <div class="project-id">MISSION_003</div>
+                    </div>
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="scan-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Liceo de Luisiana Library System</h3>
+                        <p class="project-description">
+                            A comprehensive library management system providing faster, more accurate and efficient 
+                            service for librarians. Features book cataloging, member management, and automated processes.
+                        </p>
+                        <div class="project-tech">
+                            <span>Java</span>
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>MySQL</span>
+                            <span>APIs</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link disabled">
+                                <i class="fab fa-github"></i> SOURCE CODE
+                            </a>
+                            <a href="#" class="project-link disabled">
+                                <i class="fas fa-external-link-alt"></i> CLASSIFIED
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section-locked">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="glitch-text" data-text="ESTABLISH CONTACT">ESTABLISH CONTACT</span>
+                </h2>
+                <div class="unlock-animation">
+                    <i class="fas fa-lock"></i>
+                    <span>CHECKPOINT UNLOCKED</span>
+                </div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-title">communication_channels.exe</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p class="contact-intro">
+                            Ready to collaborate on your next digital mission? 
+                            Multiple secure channels available for communication.
+                        </p>
+                        <div class="contact-methods">
+                            <a href="mailto:masaonyx@gmail.com" class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="method-info">
+                                    <span class="method-label">SECURE EMAIL</span>
+                                    <span class="method-value">masaonyx@gmail.com</span>
+                                </div>
+                                <div class="method-status">
+                                    <span class="status-dot active"></span>
+                                    <span>ACTIVE</span>
+                                </div>
+                            </a>
+                            
+                            <a href="https://github.com/Onyx-Masa" class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div class="method-info">
+                                    <span class="method-label">CODE REPOSITORY</span>
+                                    <span class="method-value">github.com/Onyx-Masa</span>
+                                </div>
+                                <div class="method-status">
+                                    <span class="status-dot active"></span>
+                                    <span>ACTIVE</span>
+                                </div>
+                            </a>
+
+                            <a href="tel:+639763709541" class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="method-info">
+                                    <span class="method-label">DIRECT LINE</span>
+                                    <span class="method-value">+63 976 370 9541</span>
+                                </div>
+                                <div class="method-status">
+                                    <span class="status-dot active"></span>
+                                    <span>ACTIVE</span>
+                                </div>
+                            </a>
+
+                            <a href="https://facebook.com/profile.php?id=61581302068782" class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fab fa-facebook"></i>
+                                </div>
+                                <div class="method-info">
+                                    <span class="method-label">SOCIAL NETWORK</span>
+                                    <span class="method-value">Nyx Arcillas</span>
+                                </div>
+                                <div class="method-status">
+                                    <span class="status-dot active"></span>
+                                    <span>ACTIVE</span>
+                                </div>
+                            </a>
+
+                            <div class="contact-method disabled">
+                                <div class="method-icon">
+                                    <i class="fab fa-linkedin"></i>
+                                </div>
+                                <div class="method-info">
+                                    <span class="method-label">PROFESSIONAL NETWORK</span>
+                                    <span class="method-value">Coming Soon...</span>
+                                </div>
+                                <div class="method-status">
+                                    <span class="status-dot pending"></span>
+                                    <span>PENDING</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <span class="glitch-text" data-text="© 2024 JOHN ONYX A. MASA">© 2026 JOHN ONYX A. MASA</span>
+                    <span class="footer-subtitle">ALL SYSTEMS OPERATIONAL</span>
+                </div>
+                <div class="footer-status">
+                    <span class="status-indicator"></span>
+                    <span>SECURE CONNECTION ESTABLISHED</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
