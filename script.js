@@ -302,10 +302,28 @@ class SkillAnimations {
                     this.animateSkillBars(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { 
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        });
         
         document.querySelectorAll('.skills').forEach(section => {
             observer.observe(section);
+        });
+        
+        // Also trigger on scroll for mobile
+        let skillsAnimated = false;
+        window.addEventListener('scroll', () => {
+            if (!skillsAnimated) {
+                const skillsSection = document.querySelector('.skills');
+                if (skillsSection) {
+                    const rect = skillsSection.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        this.animateSkillBars(skillsSection);
+                        skillsAnimated = true;
+                    }
+                }
+            }
         });
     }
     
@@ -315,8 +333,11 @@ class SkillAnimations {
         skillBars.forEach((bar, index) => {
             setTimeout(() => {
                 const width = bar.getAttribute('data-width');
-                bar.style.width = `${width}%`;
-            }, index * 200);
+                if (width) {
+                    bar.style.width = `${width}%`;
+                    bar.style.transition = 'width 1.5s ease-out';
+                }
+            }, index * 150);
         });
     }
 }
