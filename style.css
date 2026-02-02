@@ -1146,8 +1146,8 @@ body {
     }
     
     .navbar {
-        top: 90px;
-        padding: 10px 0;
+        top: 110px;
+        padding: 15px 0;
     }
     
     .nav-container {
@@ -1165,7 +1165,7 @@ body {
     }
     
     .hero {
-        padding: 140px 0 60px;
+        padding: 160px 0 60px;
         min-height: auto;
     }
     
@@ -1237,6 +1237,7 @@ body {
     
     .hologram-text {
         font-size: 0.9rem;
+        bottom: -40px;
     }
     
     .stats-grid {
@@ -1411,7 +1412,7 @@ body {
     }
     
     .hero {
-        padding: 120px 0 40px;
+        padding: 140px 0 40px;
     }
     
     .about, .skills, .projects, .contact {
